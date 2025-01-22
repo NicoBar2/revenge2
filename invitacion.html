@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres ser mi San Valentín?</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            max-width: 90%;
+            animation: fadeIn 2s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            animation: textGlow 1.5s infinite alternate;
+        }
+
+        @keyframes textGlow {
+            from {
+                text-shadow: 0 0 10px #ff6f61, 0 0 20px #ff6f61;
+            }
+            to {
+                text-shadow: 0 0 20px #fad0c4, 0 0 30px #fad0c4;
+            }
+        }
+
+        p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeInText 2s 1s forwards;
+        }
+
+        @keyframes fadeInText {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .button {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px 20px;
+            padding-bottom: 12px;
+            margin-bottom: 10px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .yes {
+            background-color: #ff6f61;
+        }
+
+        .yes:hover {
+            background-color: #ff877b;
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            opacity: 0.8;
+            animation: fadeInFooter 2s 3s forwards;
+        }
+
+        @keyframes fadeInFooter {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .floating-hearts {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: #ff6f61;
+            transform: rotate(45deg);
+            animation: floatUp 7s infinite ease-in-out;
+        }
+
+        .heart::before, .heart::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: #ff6f61;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -20px;
+            left: 0;
+        }
+
+        .heart::after {
+            top: 0;
+            left: -20px;
+        }
+
+        @keyframes floatUp {
+            from {
+                transform: translateY(100%) rotate(45deg);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-300%) rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+        .thank-you {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            padding-right: 10px;
+            padding-left: 10px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            color: #fff;
+            text-align: center;
+            animation: fadeInPopup 0.5s ease;
+            max-width: 90%;
+        }
+
+        @keyframes fadeInPopup {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -60%);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts">
+        <!-- Generar múltiples corazones dinámicamente con JavaScript -->
+    </div>
+    <div class="container">
+        <h1>💗¿Amanda Arias Arce(mi esposa) Quieres ser mi San Valentín? 💗</h1>
+        <p>Con mucho amor, de stefano su esposo para Amandita(mi esposa)😁😁</p>
+        <div class="buttons">
+            <a href="#" class="button yes" onclick="showThankYou()">¡Sí mi amor, te amo! 💕</a>
+        </div>
+    </div>
+    <div class="thank-you" id="thank-you">
+        <h2>Gracias mi amor, eres la mejor novia ❤️</h2>
+        <p>Te amo con todo mi corazón 💖😽😽</p>
+    </div>
+    <footer>
+    </footer>
+    <script>
+        function showThankYou() {
+            const thankYouPopup = document.getElementById('thank-you');
+            thankYouPopup.style.display = 'block';
+            setTimeout(() => {
+                thankYouPopup.style.display = 'none';
+            }, 5000); // Ocultar después de 5 segundos
+        }
+
+        // Generar corazones dinámicamente
+        const floatingHearts = document.querySelector('.floating-hearts');
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.bottom = '0';
+            heart.style.animationDuration = 6 + Math.random() * 3 + 's';
+            floatingHearts.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 9000); // Remover el corazón después de que complete su animación
+        }
+
+        setInterval(createHeart, 300); // Crear un corazón nuevo cada 300ms
+    </script>
+</body>
+</html>
